@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "37b7eee77851034b6fee",
-    "url": "/swingforreddit/static/css/main.139adbfd.chunk.css"
+    "revision": "61ce89a156dafb351ec8",
+    "url": "/swingforreddit/static/css/main.5f98ab3a.chunk.css"
   },
   {
-    "revision": "37b7eee77851034b6fee",
-    "url": "/swingforreddit/static/js/main.37b7eee7.chunk.js"
+    "revision": "61ce89a156dafb351ec8",
+    "url": "/swingforreddit/static/js/main.61ce89a1.chunk.js"
   },
   {
     "revision": "77a80a6cae58778944f4",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/swingforreddit/static/js/runtime~main.e28c0354.js"
   },
   {
-    "revision": "24fe9f07fa9634762bb6e49fabce4615",
+    "revision": "5fe3524d50857811bbad07b637bbb2b3",
     "url": "/swingforreddit/index.html"
   }
 ];

@@ -22,8 +22,8 @@ class App extends Component {
   fetchingPosts = false;
   after = null;
   newPosts = []
-  POST_LIMIT = 5;
-  COMMENT_LIMIT = 20;
+  POST_LIMIT = 10;
+  COMMENT_LIMIT = 5;
   lastConfidence = 0;
   requestId = 0;
 
@@ -61,7 +61,7 @@ class App extends Component {
                 .catch(err => reject(err))
             }),
             new Promise((resolve, reject) => { 
-              fetch('https://www.reddit.com/'+cos.data.permalink+'/.json?limit='+this.LIMIT)
+              fetch('https://www.reddit.com/'+cos.data.permalink+'/.json?limit='+this.COMMENT_LIMIT)
                 .then(response => response.json())
                 .then(val => resolve(val))
                 .catch(err => reject(err))
@@ -286,18 +286,15 @@ class App extends Component {
                     }}
                   >
                     <div style={{marginLeft: '10px', marginRight: '10px' }}>
-                      <p style={{ color: 'white', textShadow: '1px 1px 2px #000' }}>{post.title}</p>
+                      <p style={{ color: 'white', textShadow: '1px 1px #000' }}>{post.title}</p>
                     </div>
-                    <div style={{ position: 'absoulte', bottom: '0', marginLeft: '10px', marginRIght: '10px' }}>
-                      <p style={{ color: '#fff', textShadow: '1px 1px 2px #000' }}>🗨 {post.num_comments} • /r/{post.subreddit}</p>
+                    <div style={{ position: 'absoulte', bottom: '0', marginLeft: '10px', marginRight: '10px' }}>
+                      <p style={{ color: '#fff', textShadow: '1px 1px #000' }}>🗨 {post.num_comments} • /r/{post.subreddit}</p>
                       <div dangerouslySetInnerHTML={post.comment} className="top"></div>
                     </div>
                   </div>
               );
             })}
-
-
-          
           </ReactSwing>
         </div>
         </div>
