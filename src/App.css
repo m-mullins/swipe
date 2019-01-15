@@ -37,7 +37,7 @@ li {
     margin: 0; padding: 0;
 }
 body {
-    background: #FCD424; font: normal 16px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif;
+    ont: normal 16px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif;
 }
 button,
 input,
@@ -50,23 +50,51 @@ button {
 input {
     width: 50px;
 }
+
 #viewport {
-    width: 600px; height: 750px; background: #C7433E; border: 10px solid #ED5D52; margin: 25px auto 0; position: relative;
+    display: flex;
+    justify-content: center;
 }
 #viewport .stack {
-    width: 400px; height: 600px; background: #ED5D52; position: absolute; top: 25px; left: 50%; margin-left: -200px; border-radius: 10px;
+    width: 90vw;
+    max-width: 350px;
+    height: 90vh;
+    height: calc(90vh - var(--vh-offset, 0px));
+    top: 6vh;
+    margin: 2px;
+    position: absolute;
+    background: #ddd;
+    border-radius: 10px;
 }
 #viewport .card {
-    width: 400px; height: 600px; list-style: none; background: #fff; border-radius: 5px; position: absolute; top: 0; left: 0; box-shadow: 0 0 2px rgba(0,0,0,.2), 1px 1px 1px rgba(0,0,0,.2); text-align: center; border: 10px solid #ECECEC; box-sizing: border-box; cursor: default;
+    overflow: hidden;
+    width: 90vw;
+    max-width: 350px;
+    height: 90vh;
+    height: calc(90vh - var(--vh-offset, 0px));
+    list-style: none;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 2px rgba(0,0,0,.2), 1px 1px 1px rgba(0,0,0,.2);
+    text-align: center;
+    box-sizing: border-box;
+    cursor: default;
 }
 
 #viewport img {
   pointer-events: none;
 }
 
-ul.contra li {
-  color: #63211F;
+.contra {
+  color: #f8a;
 }
+.top {
+  color: #fff;
+}
+
 
 #viewport .in-deck:nth-child(3) {
     top: 2px; transform: translate(2px, 2px) rotate(0.4deg);
