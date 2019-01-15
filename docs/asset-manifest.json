@@ -1,13 +1,13 @@
 {
   "main.css": "/swingforreddit/static/css/main.5f98ab3a.chunk.css",
-  "main.js": "/swingforreddit/static/js/main.61ce89a1.chunk.js",
-  "main.js.map": "/swingforreddit/static/js/main.61ce89a1.chunk.js.map",
+  "main.js": "/swingforreddit/static/js/main.f3814206.chunk.js",
+  "main.js.map": "/swingforreddit/static/js/main.f3814206.chunk.js.map",
   "static/js/1.77a80a6c.chunk.js": "/swingforreddit/static/js/1.77a80a6c.chunk.js",
   "static/js/1.77a80a6c.chunk.js.map": "/swingforreddit/static/js/1.77a80a6c.chunk.js.map",
   "runtime~main.js": "/swingforreddit/static/js/runtime~main.e28c0354.js",
   "runtime~main.js.map": "/swingforreddit/static/js/runtime~main.e28c0354.js.map",
   "static/css/main.5f98ab3a.chunk.css.map": "/swingforreddit/static/css/main.5f98ab3a.chunk.css.map",
   "index.html": "/swingforreddit/index.html",
-  "precache-manifest.105affccaaa1b588de4b004abf8a6ce8.js": "/swingforreddit/precache-manifest.105affccaaa1b588de4b004abf8a6ce8.js",
+  "precache-manifest.8f12ade9bf8550cedaff434bb10a590c.js": "/swingforreddit/precache-manifest.8f12ade9bf8550cedaff434bb10a590c.js",
   "service-worker.js": "/swingforreddit/service-worker.js"
 }
