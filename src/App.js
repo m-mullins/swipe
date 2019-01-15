@@ -22,7 +22,7 @@ class App extends Component {
   fetchingPosts = false;
   after = null;
   newPosts = []
-  POST_LIMIT = 3;
+  POST_LIMIT = 5;
   COMMENT_LIMIT = 20;
   lastConfidence = 0;
 
@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   fetchPosts = () => {
-    if (this.state.posts.length > 2 || this.fetchingPosts) {
+    if (this.state.posts.length > 10 || this.fetchingPosts) {
       return;
     }
 
