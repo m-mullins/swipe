@@ -2,6 +2,7 @@
   "name": "pp",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://m-mullins.github.io/swingforreddit",
   "dependencies": {
     "jquery": "^3.3.1",
     "lity": "^2.3.1",
