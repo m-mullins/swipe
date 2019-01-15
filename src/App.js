@@ -25,6 +25,7 @@ class App extends Component {
   POST_LIMIT = 5;
   COMMENT_LIMIT = 20;
   lastConfidence = 0;
+  requestId = 0;
 
   constructor(props) {
     super(props);
@@ -40,6 +41,7 @@ class App extends Component {
     if (this.state.posts.length > 10 || this.fetchingPosts) {
       return;
     }
+    this.requestId++;
 
     this.fetchingPosts = true;
     console.log('https://www.reddit.com/.json?limit='
@@ -116,8 +118,11 @@ class App extends Component {
 
         post.title = title;
         post.id = id;
+        post.key = `render-${id}-${this.requestId}`;
         post.imgUrl = url;
+        post.thumbnail = thumbnail;
         post.num_comments = postData.num_comments;
+        post.subreddit = postData.subreddit;
       }
 
       if (p && p[1] && p[1].data && p[1].data.children) {
@@ -194,13 +199,18 @@ class App extends Component {
     console.log(el);
     if (!this.lastConfidence)
     {
-      if (el.target && el.target.attributes && el.target.attributes.style) {
-        let style = el.target.attributes.style.textContent;
-        let url = style.match(/url\(["']([^"']+)/);
-        if (url && url.length > 1) {
-          lity(url[1],{},el.target);
+      for (let attr of el.target.attributes) {
+        if (attr.localName === "data-lity-target") {
+          lity(attr.textContent,{},el.target);
         }
       }
+      //if (el.target && el.target.attributes && el.target.attributes.style) {
+      //  let style = el.target.attributes.style.textContent;
+      //  let url = style.match(/url\(["']([^"']+)/);
+      //  if (url && url.length > 1) {
+      //    lity(url[1],{},el.target);
+      //  }
+      //}
     }
 
   }
@@ -255,17 +265,19 @@ class App extends Component {
                 }}
 
               >
-            {this.state.posts && this.state.posts.map((post) => {
+ {this.state.posts && this.state.posts.map((post) => {
               //'linear-gradient(to bottom,hsla(0, 0%, 0%, 0) 0%,hsla(0, 0%, 0%, 0.009) 18.3%,hsla(0, 0%, 0%, 0.036) 33.5%,hsla(0, 0%, 0%, 0.077) 45.8%,hsla(0, 0%, 0%, 0.13) 55.7%,hsla(0, 0%, 0%, 0.194) 63.5%,hsla(0, 0%, 0%, 0.264) 69.5%,hsla(0, 0%, 0%, 0.34) 74%,hsla(0, 0%, 0%, 0.418) 77.5%,hsla(0, 0%, 0%, 0.497) 80.2%,hsla(0, 0%, 0%, 0.574) 82.5%,hsla(0, 0%, 0%, 0.646) 84.8%,hsla(0, 0%, 0%, 0.711) 87.3%,hsla(0, 0%, 0%, 0.766) 90.4%,hsla(0, 0%, 0%, 0.81) 94.6%,hsla(0, 0%, 0%, 0.84) 100%),' +
               //'linear-gradient(to top,hsla(0, 0%, 0%, 0) 0%,hsla(0, 0%, 0%, 0.009) 18.3%,hsla(0, 0%, 0%, 0.036) 33.5%,hsla(0, 0%, 0%, 0.077) 45.8%,hsla(0, 0%, 0%, 0.13) 55.7%,hsla(0, 0%, 0%, 0.194) 63.5%,hsla(0, 0%, 0%, 0.264) 69.5%,hsla(0, 0%, 0%, 0.34) 74%,hsla(0, 0%, 0%, 0.418) 77.5%,hsla(0, 0%, 0%, 0.497) 80.2%,hsla(0, 0%, 0%, 0.574) 82.5%,hsla(0, 0%, 0%, 0.646) 84.8%,hsla(0, 0%, 0%, 0.711) 87.3%,hsla(0, 0%, 0%, 0.766) 90.4%,hsla(0, 0%, 0%, 0.81) 94.6%,hsla(0, 0%, 0%, 0.84) 100%),' +
+              //'linear-gradient(to bottom,hsla(0, 0%, 0%, 0) 0%,hsla(0, 0%, 0%, 0.004) 18.7%,hsla(0, 0%, 0%, 0.015) 34.9%,hsla(0, 0%, 0%, 0.034) 48.7%,hsla(0, 0%, 0%, 0.06) 60.4%,hsla(0, 0%, 0%, 0.094) 70.1%,hsla(0, 0%, 0%, 0.135) 78.1%,hsla(0, 0%, 0%, 0.184) 84.5%,hsla(0, 0%, 0%, 0.241) 89.4%,hsla(0, 0%, 0%, 0.305) 93.2%,hsla(0, 0%, 0%, 0.377) 95.9%,hsla(0, 0%, 0%, 0.456) 97.7%,hsla(0, 0%, 0%, 0.543) 98.8%,hsla(0, 0%, 0%, 0.638) 99.5%,hsla(0, 0%, 0%, 0.74) 99.8%,hsla(0, 0%, 0%, 0.85) 100%),' +
+              //'linear-gradient(to top,hsla(0, 0%, 0%, 0) 0%,hsla(0, 0%, 0%, 0.004) 18.7%,hsla(0, 0%, 0%, 0.015) 34.9%,hsla(0, 0%, 0%, 0.034) 48.7%,hsla(0, 0%, 0%, 0.06) 60.4%,hsla(0, 0%, 0%, 0.094) 70.1%,hsla(0, 0%, 0%, 0.135) 78.1%,hsla(0, 0%, 0%, 0.184) 84.5%,hsla(0, 0%, 0%, 0.241) 89.4%,hsla(0, 0%, 0%, 0.305) 93.2%,hsla(0, 0%, 0%, 0.377) 95.9%,hsla(0, 0%, 0%, 0.456) 97.7%,hsla(0, 0%, 0%, 0.543) 98.8%,hsla(0, 0%, 0%, 0.638) 99.5%,hsla(0, 0%, 0%, 0.74) 99.8%,hsla(0, 0%, 0%, 0.85) 100%),' +
+
               return (
-                  <div className="card" id={post.id} key={`render-${post.id}`}
+                  <div className="card" id={post.id} key={post.key}
                     data-lity-target={post.imgUrl}
                     data-lity-desc={'" data-lity-close junk="'}
                     style={{
+                      backgroundColor: 'gray',
                       background:
-                          'linear-gradient(to bottom,hsla(0, 0%, 0%, 0) 0%,hsla(0, 0%, 0%, 0.004) 18.7%,hsla(0, 0%, 0%, 0.015) 34.9%,hsla(0, 0%, 0%, 0.034) 48.7%,hsla(0, 0%, 0%, 0.06) 60.4%,hsla(0, 0%, 0%, 0.094) 70.1%,hsla(0, 0%, 0%, 0.135) 78.1%,hsla(0, 0%, 0%, 0.184) 84.5%,hsla(0, 0%, 0%, 0.241) 89.4%,hsla(0, 0%, 0%, 0.305) 93.2%,hsla(0, 0%, 0%, 0.377) 95.9%,hsla(0, 0%, 0%, 0.456) 97.7%,hsla(0, 0%, 0%, 0.543) 98.8%,hsla(0, 0%, 0%, 0.638) 99.5%,hsla(0, 0%, 0%, 0.74) 99.8%,hsla(0, 0%, 0%, 0.85) 100%),' +
-                          'linear-gradient(to top,hsla(0, 0%, 0%, 0) 0%,hsla(0, 0%, 0%, 0.004) 18.7%,hsla(0, 0%, 0%, 0.015) 34.9%,hsla(0, 0%, 0%, 0.034) 48.7%,hsla(0, 0%, 0%, 0.06) 60.4%,hsla(0, 0%, 0%, 0.094) 70.1%,hsla(0, 0%, 0%, 0.135) 78.1%,hsla(0, 0%, 0%, 0.184) 84.5%,hsla(0, 0%, 0%, 0.241) 89.4%,hsla(0, 0%, 0%, 0.305) 93.2%,hsla(0, 0%, 0%, 0.377) 95.9%,hsla(0, 0%, 0%, 0.456) 97.7%,hsla(0, 0%, 0%, 0.543) 98.8%,hsla(0, 0%, 0%, 0.638) 99.5%,hsla(0, 0%, 0%, 0.74) 99.8%,hsla(0, 0%, 0%, 0.85) 100%),' +
                           'url("' + post.imgUrl + '") no-repeat center center',
                       backgroundSize: 'cover',
                       display: 'flex',
@@ -273,16 +285,19 @@ class App extends Component {
                       justifyContent: 'space-between',
                     }}
                   >
-                    <div>
-                      <p style={{ color: 'white' }}>{post.title}</p>
+                    <div style={{marginLeft: '10px', marginRight: '10px' }}>
+                      <p style={{ color: 'white', textShadow: '1px 1px 2px #000' }}>{post.title}</p>
                     </div>
-                    <div style={{ position: 'absoulte', bottom: '0' }}>
-                      <p style={{ color: '#fff' }}>{post.num_comments}</p>
+                    <div style={{ position: 'absoulte', bottom: '0', marginLeft: '10px', marginRIght: '10px' }}>
+                      <p style={{ color: '#fff', textShadow: '1px 1px 2px #000' }}>🗨 {post.num_comments} • /r/{post.subreddit}</p>
                       <div dangerouslySetInnerHTML={post.comment} className="top"></div>
                     </div>
                   </div>
               );
             })}
+
+
+          
           </ReactSwing>
         </div>
         </div>
@@ -291,3 +306,6 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+            */

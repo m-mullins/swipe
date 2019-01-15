@@ -91,8 +91,15 @@ input {
 .contra {
   color: #f8a;
 }
+.top a {
+    color: #fff;
+}
+.top a:link, .top a:visited, .top a:hover, .top a:active {
+    color: #fff;
+}
 .top {
   color: #fff;
+  text-shadow: 1px 1px 2px #000;
 }
 
 
@@ -116,4 +123,8 @@ input {
 }
 .source a {
     color: #C7433E;
+}
+
+.lity-close {
+    display: none;
 }
