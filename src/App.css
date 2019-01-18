@@ -37,7 +37,8 @@ li {
     margin: 0; padding: 0;
 }
 body {
-    ont: normal 16px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif;
+    font: normal 16px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif;
+    background-color: #282c34;
 }
 button,
 input,
@@ -61,7 +62,7 @@ input {
     height: 90vh;
     height: calc(90vh - var(--vh-offset, 0px));
     max-height: 800px;
-    top: 45px;
+    top: 4.45vh;
     margin: 2px;
     position: absolute;
     background-size: 'cover';
