@@ -60,9 +60,11 @@ input {
     max-width: 350px;
     height: 90vh;
     height: calc(90vh - var(--vh-offset, 0px));
-    top: 6vh;
+    max-height: 800px;
+    top: 45px;
     margin: 2px;
     position: absolute;
+    background-size: 'cover';
     background: #ddd;
     border-radius: 10px;
 }
@@ -72,6 +74,7 @@ input {
     max-width: 350px;
     height: 90vh;
     height: calc(90vh - var(--vh-offset, 0px));
+    max-height: 800px;
     list-style: none;
     background: #fff;
     border-radius: 5px;
