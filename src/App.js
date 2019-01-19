@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactSwing  from 'react-swing';
 import './App.css';
 import lity from 'lity';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 class App extends Component {
   fullStack = React.createRef();
@@ -11,6 +12,7 @@ class App extends Component {
   after = null;
   POST_LIMIT = 12;
   LOWER_COUNT = 5;
+  CARD_DISPLAY = 3;
   requestId = 0;
 
   constructor(props) {
@@ -38,6 +40,28 @@ class App extends Component {
         }
       }
   }
+
+  throwCard = (key,e) => {
+    console.log(key,e,this.fullStack);
+
+    if (this.state.members.length < 1 || this.fullStack === null || this.fullStack.current === null) {
+      return;
+    }
+
+    const topCard = this.state.members[0];
+
+    const children = [...this.fullStack.current.children]; //create a copy before running getCard
+    for (let element of children) {
+      console.log(element.id);
+      if (element && element.id && this.state.stack && element.id === topCard.key) { 
+        const card = this.state.stack.getCard(element);
+        if (card) {
+          card.throwOut(0,0);
+        }
+      }
+    }
+  }
+
 
   componentDidMount() {
     this.fetchPosts();
@@ -162,13 +186,14 @@ class App extends Component {
               <div style={{display:'none'}}></div>
           </ReactSwing>
           <div ref={this.fullStack} className="stack">
-                  <div className="card" id={this.state.members[0].key} key={this.state.members[0].key}
-                    data-lity-target={this.state.members[0].imgUrl}
+                {this.state.members && this.state.members.slice(0,this.CARD_DISPLAY).map((item) => 
+                  <div className="card" id={item.key} key={item.key}
+                    data-lity-target={item.imgUrl}
                     data-lity-desc={'" data-lity-close junk="'}
                     style={{
                       backgroundColor: 'gray',
                       background:
-                          'url("' + this.state.members[0].imgUrl + '") no-repeat center center',
+                          'url("' + item.imgUrl + '") no-repeat center center',
                       backgroundSize: 'cover',
                       display: 'flex',
                       flexDirection: 'column',
@@ -176,24 +201,14 @@ class App extends Component {
                     }}
                   >
                   </div>
-                  <div className="card" id={this.state.members[1].key} key={this.state.members[1].key}
-                    data-lity-target={this.state.members[1].imgUrl}
-                    data-lity-desc={'" data-lity-close junk="'}
-                    style={{
-                      backgroundColor: 'gray',
-                      background:
-                          'url("' + this.state.members[1].imgUrl + '") no-repeat center center',
-                      backgroundSize: 'cover',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                  </div>
+                )}
               </div>
             </div>
             }
         </div>
+        <KeyboardEventHandler
+          handleKeys={['space']}
+          onKeyEvent={this.throwCard.bind(this)} /> 
       </div>
     );
   }

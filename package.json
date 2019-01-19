@@ -2,12 +2,13 @@
   "name": "pp",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://m-mullins.github.io/swipe",
+  "homepage": "https://swipe.dog/",
   "dependencies": {
     "jquery": "^3.3.1",
     "lity": "^2.3.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-keyboard-event-handler": "^1.4.1",
     "react-scripts": "2.1.1",
     "react-swing": "^2.0.1",
     "unescape": "^1.0.1"
